@@ -1,0 +1,138 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.chrome.service import Service
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoAlertPresentException
+import unittest, time, re
+import HtmlTestRunner
+
+class AddRoom(unittest.TestCase):
+    def setUp(self):
+        s = Service('D:/Hotel-Management-System/testing/chromedriver.exe')
+        self.driver = webdriver.Chrome(service=s)
+        self.verificationErrors = []
+        self.accept_next_alert = True
+
+    def test_UTCID01(self):
+        driver = self.driver
+        driver.get("http://127.0.0.1:8000/login/")
+        driver.find_element(By.NAME,"username").send_keys("admin")
+        driver.find_element(By.NAME,"password").send_keys("admin123")
+        driver.find_element(By.CSS_SELECTOR,".btn").click()
+        driver.get("http://127.0.0.1:8000/add-room/")
+        driver.find_element(By.ID,"item-type").send_keys("9")
+        driver.find_element(By.ID,"item-quantity").send_keys("2")
+        driver.find_element(By.NAME,"price").send_keys("3000")
+        driver.find_element(By.NAME,"capacity").send_keys("5")
+        driver.find_element(By.NAME,"type").send_keys("Classic")
+        driver.find_element(By.CSS_SELECTOR,".btn").click()
+
+        
+    def test_UTCID02(self):
+        driver = self.driver
+        driver.get("http://127.0.0.1:8000/login/")
+        driver.find_element(By.NAME,"username").send_keys("admin")
+        driver.find_element(By.NAME,"password").send_keys("admin123")
+        driver.find_element(By.CSS_SELECTOR,".btn").click()
+        driver.get("http://127.0.0.1:8000/add-room/")
+        driver.find_element(By.ID,"item-type").send_keys("")
+        driver.find_element(By.ID,"item-quantity").send_keys("2")
+        driver.find_element(By.NAME,"price").send_keys("3000")
+        driver.find_element(By.NAME,"capacity").send_keys("5")
+        driver.find_element(By.NAME,"type").send_keys("classic")
+        driver.find_element(By.CSS_SELECTOR,".btn").click()
+        try: self.assertEqual("ValueError at /add-room/", driver.find_element_by_xpath("//div[@id='summary']/h1").text)
+        except AssertionError as e: self.verificationErrors.append(str(e))
+
+    def test_UTCID03(self):
+        driver = self.driver
+        driver.get("http://127.0.0.1:8000/login/")
+        driver.find_element(By.NAME,"username").send_keys("admin")
+        driver.find_element(By.NAME,"password").send_keys("admin123")
+        driver.find_element(By.CSS_SELECTOR,".btn").click()
+        driver.get("http://127.0.0.1:8000/add-room/")
+        driver.find_element(By.ID,"item-type").send_keys("9")
+        driver.find_element(By.ID,"item-quantity").send_keys("")
+        driver.find_element(By.NAME,"price").send_keys("3000")
+        driver.find_element(By.NAME,"capacity").send_keys("5")
+        driver.find_element(By.NAME,"type").send_keys("classic")
+        driver.find_element(By.CSS_SELECTOR,".btn").click()
+        try: self.assertEqual("ValueError at /add-room/", driver.find_element_by_xpath("//div[@id='summary']/h1").text)
+        except AssertionError as e: self.verificationErrors.append(str(e))
+
+    def test_UTCID04(self):
+        driver = self.driver
+        driver.get("http://127.0.0.1:8000/login/")
+        driver.find_element(By.NAME,"username").send_keys("admin")
+        driver.find_element(By.NAME,"password").send_keys("admin123")
+        driver.find_element(By.CSS_SELECTOR,".btn").click()
+        driver.get("http://127.0.0.1:8000/add-room/")
+        driver.find_element(By.ID,"item-type").send_keys("9")
+        driver.find_element(By.ID,"item-quantity").send_keys("2")
+        driver.find_element(By.NAME,"price").send_keys("")
+        driver.find_element(By.NAME,"capacity").send_keys("5")
+        driver.find_element(By.NAME,"type").send_keys("classic")
+        driver.find_element(By.CSS_SELECTOR,".btn").click()
+        try: self.assertEqual("ValueError at /add-room/", driver.find_element_by_xpath("//div[@id='summary']/h1").text)
+        except AssertionError as e: self.verificationErrors.append(str(e))
+
+    def test_UTCID05(self):
+        driver = self.driver
+        driver.get("http://127.0.0.1:8000/login/")
+        driver.find_element(By.NAME,"username").send_keys("admin")
+        driver.find_element(By.NAME,"password").send_keys("admin123")
+        driver.find_element(By.CSS_SELECTOR,".btn").click()
+        driver.get("http://127.0.0.1:8000/add-room/")
+        driver.find_element(By.ID,"item-type").send_keys("9")
+        driver.find_element(By.ID,"item-quantity").send_keys("2")
+        driver.find_element(By.NAME,"price").send_keys("3000")
+        driver.find_element(By.NAME,"capacity").send_keys("")
+        driver.find_element(By.NAME,"type").send_keys("classic")
+        driver.find_element(By.CSS_SELECTOR,".btn").click()
+        try: self.assertEqual("ValueError at /add-room/", driver.find_element_by_xpath("//div[@id='summary']/h1").text)
+        except AssertionError as e: self.verificationErrors.append(str(e))
+
+    def test_UTCID06(self):
+        driver = self.driver
+        driver.get("http://127.0.0.1:8000/login/")
+        driver.find_element(By.NAME,"username").send_keys("admin")
+        driver.find_element(By.NAME,"password").send_keys("admin123")
+        driver.find_element(By.CSS_SELECTOR,".btn").click()
+        driver.get("http://127.0.0.1:8000/add-room/")
+        driver.find_element(By.ID,"item-type").send_keys("9")
+        driver.find_element(By.ID,"item-quantity").send_keys("2")
+        driver.find_element(By.NAME,"price").send_keys("3000")
+        driver.find_element(By.NAME,"capacity").send_keys("5")
+        driver.find_element(By.NAME,"type").send_keys("")
+        driver.find_element(By.CSS_SELECTOR,".btn").click()
+
+    def is_element_present(self, how, what):
+        try: self.driver.find_element(by=how, value=what)
+        except NoSuchElementException as e: return False
+        return True
+    
+    def is_alert_present(self):
+        try: self.driver.switch_to_alert()
+        except NoAlertPresentException as e: return False
+        return True
+    
+    def close_alert_and_get_its_text(self):
+        try:
+            alert = self.driver.switch_to_alert()
+            alert_text = alert.text
+            if self.accept_next_alert:
+                alert.accept()
+            else:
+                alert.dismiss()
+            return alert_text
+        finally: self.accept_next_alert = True
+    
+    def tearDown(self):
+        self.driver.quit()
+        self.assertEqual([], self.verificationErrors)
+
+
+if __name__ == "__main__":
+     unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='D:/Hotel-Management-System/testing/report'))
