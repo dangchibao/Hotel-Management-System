@@ -53,6 +53,6 @@ python3 manage.py runserver
 #### Note : If you have run the project next time, you only need to do B5
 
 * Login in to the system with username by admin: "admin" and password : "admin123"
-* 
+
 * Login in to the system with username by guest: click Sign up
 
