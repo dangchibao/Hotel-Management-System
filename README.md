@@ -1,3 +1,4 @@
+				HOTEL MANAGEMENT SYSTEM GUIDLINE
 B1:
 git clone https://github.com/dangchibao/Hotel-Management-System.git
 
