@@ -1,5 +1,6 @@
 				HOTEL MANAGEMENT SYSTEM GUIDLINE
 B1:
+
 git clone https://github.com/dangchibao/Hotel-Management-System.git
 
 B2:Run command in Window PowerShell:
@@ -9,6 +10,7 @@ pip install Django==3.1.4
 pip install django-phonenumber-field[phonenumbers]
 
 B3:Move to file HMS and Run command:
+
 cd HMS
 
 python3 manage.py shell
