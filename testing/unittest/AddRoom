@@ -12,6 +12,7 @@ class AddRoom(unittest.TestCase):
     def setUp(self):
         s = Service('D:/Hotel-Management-System/testing/chromedriver.exe')
         self.driver = webdriver.Chrome(service=s)
+        self.base_url = "https://www.google.com/"
         self.verificationErrors = []
         self.accept_next_alert = True
 
@@ -28,6 +29,8 @@ class AddRoom(unittest.TestCase):
         driver.find_element(By.NAME,"capacity").send_keys("5")
         driver.find_element(By.NAME,"type").send_keys("Classic")
         driver.find_element(By.CSS_SELECTOR,".btn").click()
+        try: self.assertEqual("Filter", driver.find_element(By.NAME,"dateFilter").text)
+        except AssertionError as e: self.verificationErrors.append(str(e))
 
         
     def test_UTCID02(self):
@@ -107,6 +110,8 @@ class AddRoom(unittest.TestCase):
         driver.find_element(By.NAME,"capacity").send_keys("5")
         driver.find_element(By.NAME,"type").send_keys("")
         driver.find_element(By.CSS_SELECTOR,".btn").click()
+        try: self.assertEqual("Filter", driver.find_element(By.NAME,"dateFilter").text)
+        except AssertionError as e: self.verificationErrors.append(str(e))
 
     def is_element_present(self, how, what):
         try: self.driver.find_element(by=how, value=what)

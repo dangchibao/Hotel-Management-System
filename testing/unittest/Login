@@ -12,6 +12,7 @@ class Login(unittest.TestCase):
     def setUp(self):
         s = Service('D:/Hotel-Management-System/testing/chromedriver.exe')
         self.driver = webdriver.Chrome(service=s)
+        self.base_url = "https://www.google.com/"
         self.verificationErrors = []
         self.accept_next_alert = True
     
@@ -21,7 +22,7 @@ class Login(unittest.TestCase):
         driver.find_element(By.NAME,"username").send_keys("admin")
         driver.find_element(By.NAME,"password").send_keys("admin123")
         driver.find_element(By.CSS_SELECTOR,".btn").click()
-        try: self.assertEqual("", driver.find_element(By.ID,"messages").text)
+        try: self.assertEqual("Save Changes", driver.find_element(By.NAME,"submit").text)
         except AssertionError as e: self.verificationErrors.append(str(e))
 
     def test_UTCID02(self):
@@ -75,6 +76,8 @@ class Login(unittest.TestCase):
         driver.find_element(By.NAME,"username").send_keys("hophuong")
         driver.find_element(By.NAME,"password").send_keys("Daylapassword123")
         driver.find_element(By.CSS_SELECTOR,".btn").click()
+        try: self.assertEqual("Save Changes", driver.find_element(By.NAME,"submit").text)
+        except AssertionError as e: self.verificationErrors.append(str(e))
 
     def test_UTCID08(self):
         driver = self.driver
